@@ -1,0 +1,37 @@
+mixin productList({ _id, product, size, quantity, color })
+    tr.cart_item(data-product-id= _id)
+        td.product-thumbnail
+            a(href= `/product/${product.sex}/${product.slug}`  target="_blank")
+                img(src=`img/products/${product.images[0]}` alt='Product Image')
+        td.product-name
+            a(href=`/product/${product.sex}/${product.slug}`  target="_blank")= product.name
+            .size-quantity
+                p Size:
+                select.select__product-list(name='size')
+                    each s in product.size
+                        if(s === size)
+                            option(value= s selected)= s.replace(/^\w/, c => c.toUpperCase())
+                        else 
+                            option(value= s)= s.replace(/^\w/, c => c.toUpperCase())
+
+                p Color:
+                select.select__product-list(name='color')
+                    each c in product.color
+                        if(c === color)
+                            option(value= c selected)= c.replace(/^\w/, c => c.toUpperCase())
+                        else 
+                            option(value= c)= c.replace(/^\w/, c => c.toUpperCase())
+        td.product-price
+            span.amount.amount--product= `$ ${product.price}`
+        td.product-quantity
+            .quantity.buttons_added
+                input.minus(type='button' value='-')
+                input.input-text.qty.text(type='number' step='1' min='1' max= product.quantity value= quantity title='Quantity')
+                input.plus(type='button' value='+')
+            p
+                small.text-muted= `(${product.quantity} AVAILABLE)`
+        td.product-subtotal
+            span.amount.amount--total= `$ ${product.price * quantity}`
+        td.product-remove
+            a.remove(href='#' title='Remove this item')
+                i.ui-close

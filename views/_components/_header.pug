@@ -1,0 +1,195 @@
+header.nav
+    .nav__holder.nav--sticky
+        .container.relative
+            // Top Bar
+            .top-bar.d-none.d-lg-flex
+                //- // Currency / Language
+                //- ul.top-bar__currency-language
+                //-     li.top-bar__language
+                //-         a(href='#') English
+                //-         .top-bar__language-dropdown
+                //-             ul
+                //-                 li
+                //-                     a(href='#') English
+                //-                 li
+                //-                     a(href='#') Spanish
+                //-                 li
+                //-                     a(href='#') German
+                //-                 li
+                //-                     a(href='#') Chinese
+                //-     li.top-bar__currency
+                //-         a(href='#') USD
+                //-         .top-bar__currency-dropdown
+                //-             ul
+                //-                 li
+                //-                     a(href='#') USD
+                //-                 li
+                //-                     a(href='#') EUR
+                // Promo
+                p.top-bar__promo.text-center Free shipping on orders over $50
+                // Sign in / Wishlist / Cart
+                .top-bar__right
+                if user
+                    // Log out
+                    a#top-bar__sign-in.top-bar__item.top-bar__sign-in(href='/logout')
+                        i.ui-user
+                        | Log out
+                    // Wishlist
+                    a.top-bar__item(href='/wishlist')
+                        i.ui-heart
+                    .top-bar__item.nav-cart(data-user-id= user.id)
+                        a(href='/cart')
+                            i.ui-bag
+                            |
+                            span
+                        .nav-cart__dropdown
+                            .nav-cart__items
+                            .nav-cart__summary
+                                span Cart Subtotal
+                                span.nav-cart__total-price $ 0
+                            .nav-cart__actions.mt-20
+                                a.btn.btn-md.btn-light(href='/cart')
+                                    span View Cart
+                                a.btn.btn-md.btn-color.mt-10(href='/checkout')
+                                    span Proceed to Checkout
+                else 
+                    // Sign Up & Login
+                    a#top-bar__sign-in.top-bar__item.top-bar__sign-in(href='/login')
+                        i.ui-user
+                        | Sign up | Login
+            // end top bar
+            .flex-parent
+                // Mobile Menu Button
+                button#nav-icon-toggle.nav-icon-toggle(aria-label='Open mobile menu')
+                    span.nav-icon-toggle__box
+                        span.nav-icon-toggle__inner
+                // end mobile menu button
+                // Logo
+                a.logo(href='/')
+                    img.logo__img(src='/img/logo_light.png' alt='logo')
+                // Nav-wrap
+                nav.flex-child.nav__wrap.d-none.d-lg-block
+                    ul.nav__menu
+                        li.nav__dropdown.active
+                            a(href='/products/men') Men
+                            ul.nav__dropdown-menu
+                                li
+                                    a(href='/products/men/shirts') T-shirt
+                                li
+                                    a(href='#') Hoodie &amp; Jackets
+                                li
+                                    a(href='#') Suits
+                                li
+                                    a(href='#') Shorts
+                        li.nav__dropdown
+                            a(href='/products/women') Women
+                            ul.nav__dropdown-menu
+                                li
+                                    a(href='#') Underwear
+                                li
+                                    a(href='#') Hipster
+                                li
+                                    a(href='/products/women/dress') Dress
+                                li
+                                    a(href='#') Hoodie &amp; Jackets
+                                li
+                                    a(href='#') Tees
+                        li.nav__dropdown
+                            a(href='/products/accessories') Accessories
+                            ul.nav__dropdown-menu.nav__megamenu
+                                li
+                                    .nav__megamenu-wrap
+                                        .row
+                                            .col.nav__megamenu-item
+                                                a.nav__megamenu-title(href='#') All accessories
+                                                ul.nav__megamenu-list
+                                                    li
+                                                        a(href='#') Wallets
+                                                    li
+                                                        a(href='#') Scarfs
+                                                    li
+                                                        a(href='#') Belts
+                                                    li
+                                                        a(href='#') Shoes
+                                            .col.nav__megamenu-item
+                                                a.nav__megamenu-title(href='#') for her
+                                                ul.nav__megamenu-list
+                                                    li
+                                                        a(href='#') Underwear
+                                                    li
+                                                        a(href='#') Hipster
+                                                    li
+                                                        a(href='#') Dress
+                                                    li
+                                                        a(href='#') Hoodie &amp; Jackets
+                                                    li
+                                                        a(href='#') Tees
+                                            .col.nav__megamenu-item
+                                                a.nav__megamenu-title(href='#') for him
+                                                ul.nav__megamenu-list
+                                                    li
+                                                        a(href='#') T-shirt
+                                                    li
+                                                        a(href='#') Hoodie &amp; Jackets
+                                                    li
+                                                        a(href='#') Suits
+                                                    li
+                                                        a(href='#') Shorts
+                                            .col.nav__megamenu-item
+                                                a.nav__megamenu-title(href='#') watches
+                                                ul.nav__megamenu-list
+                                                    li
+                                                        a(href='#') Smart Watches
+                                                    li
+                                                        a(href='#') Diving Watches
+                                                    li
+                                                        a(href='#') Sport Watches
+                                                    li
+                                                        a(href='#') Classic Watches
+                                            .col.nav__megamenu-item
+                                                a(href='#')
+                                                    img(src='/img/shop/megamenu_banner.png' alt='')
+                        li.nav__dropdown
+                            a(href='/blog-standard') News
+                            ul.nav__dropdown-menu
+                                li
+                                    a(href='/blog-standard') Blog Standard
+                                li
+                                    a(href='/blog-single') Single Post
+                        li.nav__dropdown
+                            a(href='/contact') Pages
+                            ul.nav__dropdown-menu
+                                li
+                                    a(href='/products') Catalog
+                                li
+                                    a(href='/single-product') Single Product
+                                li
+                                    a(href='/cart') Cart
+                                li
+                                    a(href='/checkout') Checkout
+                                li
+                                    a(href='/about') About
+                                li
+                                    a(href='/contact') Contact
+                                li
+                                    a(href='/faq') FAQ
+                                li
+                                    a(href='/404') 404
+                    // end menu
+                    // end nav-wrap
+                    // Search
+                .flex-child.nav__search.d-none.d-lg-block
+                    form.nav__search-form(method='get')
+                        input.nav__search-input(type='search' placeholder='Search')
+                        button.nav__search-submit(type='submit')
+                            i.ui-search
+                // Mobile Wishlist
+                a.nav__mobile-wishlist.d-lg-none(href='#' aria-label='Mobile wishlist')
+                    i.ui-heart
+                // Mobile Cart
+                a.nav__mobile-cart.d-lg-none(href='/cart')
+                    i.ui-bag
+                    span.nav__mobile-cart-amount (2)
+        // end flex-parent
+        // end container
+// end navigation

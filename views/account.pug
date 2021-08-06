@@ -1,0 +1,226 @@
+extends base
+
+block content 
+    // OLD CONTENT
+    .pages-title.section-padding
+        .container
+            .row
+                .col-xs-12
+                    .pages-title-text.text-center
+                        h2 My Account
+                        ul.text-left
+                            li
+                                a(href='index') Home 
+                            li
+                                span  // 
+                                | My Account
+    // pages-title-end
+    // My account content section start
+    section.pages.my-account-page.section-padding
+        .container
+            .row
+                .col-xs-12.col-sm-6
+                    .padding60
+                        .log-title
+                            h3
+                                strong My Account
+                        .prament-area.main-input
+                            ul#accordion.panel-group
+                                li.panel
+                                    .account-title(data-toggle='collapse' data-parent='#accordion' data-target='#collapse1')
+                                        label
+                                            input(type='radio' checked='' value='forever' name='rememberme')
+                                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;add my frist address
+                                    #collapse1.panel-collapse.collapse.in
+                                        .single-log-info
+                                            .bulling-title
+                                                h5 Billing Address
+                                                p To add a new address, please fill out the form below.
+                                            .custom-input
+                                                form(action='mail.php' method='post')
+                                                    .row
+                                                        .col-md-6
+                                                            input(type='text' name='name' placeholder='First Name')
+                                                        .col-md-6
+                                                            input(type='text' name='name' placeholder='Last Name')
+                                                    input(type='text' name='email' placeholder='Email Address')
+                                                    .custom-select
+                                                        select.form-control
+                                                            option  Country
+                                                            option  Bangladesh 
+                                                            option  United States 
+                                                            option  United Kingdom 
+                                                            option  Canada 
+                                                            option  Malaysia 
+                                                            option  United Arab Emirates 
+                                                    input(type='text' name='text' placeholder='Address')
+                                                    .custom-select
+                                                        select.form-control
+                                                            option  Town / City
+                                                            option  Aberdeen 
+                                                            option  Bedfordshire 
+                                                            option  Caerphilly 
+                                                            option  Denbighshire 
+                                                            option  East Ayrshire 
+                                                            option  Falkirk 
+                                                    p.red-color ** You must register at least one phone number.
+                                                    input(type='text' name='text' placeholder='Mobile Phone')
+                                                    .custom-mess
+                                                        textarea(rows='2' placeholder='Additional information' name='message')
+                                                    label
+                                                        | Please assign an address title for future reference.
+                                                        sup *
+                                                    .input-text
+                                                        input(type='text' name='refrence' value='')
+                                                    .submit-text
+                                                        a(href='#') Save
+                                li.panel.panelimg
+                                    .account-title(data-toggle='collapse' data-parent='#accordion' data-target='#collapse2')
+                                        label
+                                            input(type='radio' value='forever' name='rememberme')
+                                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;My credit slips
+                                    #collapse2.paypal-dsc.panel-collapse.collapse
+                                        .prayment-dsc
+                                            .bulling-title
+                                                h5 Order history
+                                            p Here are the orders you&apos;ve placed since your account was created.
+                                            span You have not placed any orders.
+                                li.panel.panelimg
+                                    .account-title(data-toggle='collapse' data-parent='#accordion' data-target='#collapse3')
+                                        label
+                                            input(type='radio' value='forever' name='rememberme')
+                                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;my address
+                                    #collapse3.paypal-dsc.panel-collapse.collapse
+                                        .prayment-dsc
+                                            .bulling-title
+                                                h5 Order history
+                                            p Here are the orders you&apos;ve placed since your account was created.
+                                            span You have not placed any orders.
+                                li.panel
+                                    .account-title(data-toggle='collapse' data-parent='#accordion' data-target='#collapse4')
+                                        label
+                                            input(type='radio' value='forever' name='rememberme')
+                                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;My personal information
+                                    #collapse4.panel-collapse.collapse
+                                        .single-log-info
+                                            .bulling-title
+                                                h5 Your personal information
+                                                p Please be sure to update your personal information if it has changed
+                                            .mr-mrs
+                                                label.social-label
+                                                    sup *
+                                                    |  Social title
+                                                label
+                                                    input(type='radio' value='forever' name='rememberme')
+                                                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Mr.
+                                                label
+                                                    input(type='radio' value='forever' name='rememberme')
+                                                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Msr.
+                                            .custom-input
+                                                form(action='mail.php' method='post')
+                                                    input(type='text' name='name' placeholder='Your Full Name')
+                                                    input(type='text' name='email' placeholder='Email Address')
+                                                    .row
+                                                        .col-xs-12
+                                                            label Date of Birth
+                                                            .row
+                                                                .col-sm-4
+                                                                    .custom-select
+                                                                        select.form-control
+                                                                            option 1
+                                                                            option 2
+                                                                            option 3
+                                                                            option 4
+                                                                            option 5
+                                                                            option 6
+                                                                            option 7
+                                                                            option 8
+                                                                            option 9
+                                                                            option 10
+                                                                            option 11
+                                                                            option 12
+                                                                            option 13
+                                                                            option 14
+                                                                            option 15
+                                                                            option 16
+                                                                            option 17
+                                                                            option 18
+                                                                            option 19
+                                                                            option 20
+                                                                            option 21
+                                                                            option 22
+                                                                            option 23
+                                                                            option 24
+                                                                            option 25
+                                                                            option 26
+                                                                            option 27
+                                                                            option 28
+                                                                            option 29
+                                                                            option 30
+                                                                .col-sm-4
+                                                                    .custom-select
+                                                                        select.form-control
+                                                                            option January
+                                                                            option February 
+                                                                            option March 
+                                                                            option April 
+                                                                            option May 
+                                                                            option June 
+                                                                            option July 
+                                                                            option August 
+                                                                            option September 
+                                                                            option October 
+                                                                            option November 
+                                                                            option December 
+                                                                .col-sm-4
+                                                                    .custom-select
+                                                                        select.form-control
+                                                                            option 1990
+                                                                            option 1991
+                                                                            option 1992
+                                                                            option 1993
+                                                                            option 1994
+                                                                            option 1995
+                                                                            option 1996
+                                                                            option 1997
+                                                                            option 1998
+                                                                            option 1999
+                                                                            option 2000
+                                                                            option 2001
+                                                                            option 2002
+                                                                            option 2003
+                                                                            option 2004
+                                                                            option 2005
+                                                                            option 2006
+                                                                            option 2007
+                                                                            option 2008
+                                                                            option 2009
+                                                                            option 2010
+                                                                            option 2011
+                                                                            option 2012
+                                                                            option 2013
+                                                                            option 2014
+                                                                            option 2016
+                                                                            option 2016
+                                                                            option 2017
+                                                                            option 2018
+                                                                            option 2019
+                                                                            option 2020
+                                                    input(type='password' placeholder='Current Password' name='password' value='')
+                                                    input(type='password' placeholder='New Password' name='password' value='')
+                                                    input(type='password' placeholder='Confirmation' name='password' value='')
+                                                    .row
+                                                        .col-xs-12
+                                                            .sing-checkbox
+                                                                label
+                                                                    input(type='checkbox' name='rememberme')
+                                                                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Sign up for our newsletter!
+                                                                label
+                                                                    input(type='checkbox' name='rememberme')
+                                                                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Receive special offers from our partners!
+                                                    .submit-text.text-left
+                                                        button(type='submit' value='submit form') Save
+                .col-xs-12.col-sm-6
+                    .my-right-side
+                        a(href='wishlist') My wishlist
+                        a(href='cart') Order history and details

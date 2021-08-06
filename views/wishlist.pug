@@ -1,0 +1,91 @@
+extends base
+
+block content 
+    .pages-title.section-padding
+        .container
+            .row
+                .col-xs-12
+                    .pages-title-text.text-center
+                        h2 Wishlist
+                        ul.text-left
+                            li
+                                a(href='/') Home 
+                            li
+                                span  // 
+                                | Wishlist
+    // pages-title-end
+    // wishlist content section start
+    section.pages.wishlist-page.section-padding
+        .container
+            .row
+                .col-xs-12
+                    .table-responsive.padding60
+                        table.wishlist-table.text-center
+                            thead
+                                tr
+                                    th Product
+                                    th Price
+                                    th Stock Status 
+                                    th Add To Cart
+                                    th Remove
+                            tbody
+                                tr
+                                    td.td-img.text-left
+                                        a(href='#')
+                                            img(src='img/cart/1.png' alt='Add Product')
+                                        .items-dsc
+                                            h5
+                                                a(href='#') men&rsquo;s black t-shirt
+                                            p.itemcolor
+                                                | Color : 
+                                                span Blue
+                                            p.itemcolor
+                                                | Size   : 
+                                                span SL
+                                    td $56.00
+                                    td In Stock
+                                    td
+                                        .submit-text
+                                            a(href='cart') Add to cart
+                                    td
+                                        i.mdi.mdi-close(title='Remove this product')
+                                tr
+                                    td.td-img.text-left
+                                        a(href='#')
+                                            img(src='img/cart/2.png' alt='Add Product')
+                                        .items-dsc
+                                            h5
+                                                a(href='#') men&rsquo;s white t-shirt
+                                            p.itemcolor
+                                                | Color : 
+                                                span Blue
+                                            p.itemcolor
+                                                | Size   : 
+                                                span SL
+                                    td $56.00
+                                    td In Stock
+                                    td
+                                        .submit-text
+                                            a(href='cart') Add to cart
+                                    td
+                                        i.mdi.mdi-close(title='Remove this product')
+                            tr
+                                td.td-img.text-left
+                                    a(href='#')
+                                        img(src='img/cart/3.png' alt='Add Product')
+                                    .items-dsc
+                                        h5
+                                            a(href='#') men&rsquo;s white t-shirt
+                                        p.itemcolor
+                                            | Color : 
+                                            span Blue
+                                        p.itemcolor
+                                            | Size   : 
+                                            span SL
+                                td $56.00
+                                td In Stock
+                                td
+                                    .submit-text
+                                        a(href='cart') Add to cart
+                                td
+                                    i.mdi.mdi-close(title='Remove this product')

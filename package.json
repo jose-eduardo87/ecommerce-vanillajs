@@ -1,0 +1,47 @@
+{
+  "name": "ecommerce-application",
+  "version": "1.0.0",
+  "description": "fullstack application using node, express, mongo, mongoose etc",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:js": "parcel watch ./public/js/scripts.js --out-dir ./public/js --out-file bundle.js"
+  },
+  "author": "José Eduardo",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "express-rate-limit": "^5.2.6",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "html-to-text": "^8.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.13",
+    "nodemailer": "^6.6.1",
+    "pug": "^3.0.2",
+    "regenerator-runtime": "^0.13.7",
+    "slugify": "^1.5.3",
+    "validator": "^13.6.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "parcel-bundler": "^1.12.5"
+  },
+  "keywords": [
+    "nodejs",
+    "pug",
+    "express",
+    "mongo",
+    "mongoose",
+    "jwt",
+    "bcrypt"
+  ]
+}

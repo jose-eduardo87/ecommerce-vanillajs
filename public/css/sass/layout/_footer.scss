@@ -1,0 +1,54 @@
+/*-------------------------------------------------------*/
+/* Footer
+/*-------------------------------------------------------*/
+
+.footer {
+  background-color: #000;
+
+  &__widgets {
+    padding: 65px 0;
+
+    ul li a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @include bp-lg-down {
+      & > .row > div:not(:last-child) {
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  .widget-title {
+    margin-bottom: 29px;
+  }
+}
+
+/* Bottom Footer
+-------------------------------------------------------*/
+
+.footer__bottom {
+  padding: 20px 0 50px;
+}
+
+.copyright {
+  display: block;
+  font-size: 13px;
+  padding: 10px;
+  color: $meta-color;
+
+  a {
+    color: $text-color;
+
+    &:hover {
+      color: #fff;
+    }
+  }  
+}
+
+/* Payment Systems
+-------------------------------------------------------*/
+.footer__payment-systems i {
+  font-size: 26px;
+}

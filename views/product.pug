@@ -1,0 +1,286 @@
+extends base
+
+block content 
+    section.section-wrap.pb-20.product-single
+        .container
+            // Breadcrumbs
+            ol.breadcrumbs
+                li
+                    a(href='/') Home
+                li
+                    a(href=`/products/${product.sex}`)= product.sex.replace(/^\w/, c => c.toUpperCase())
+                li.active
+                    | #{product.name}
+            .row
+                .col-md-6.product-slider.mb-50
+                    #gallery-main.flickity.flickity-slider-wrap.mfp-hover
+                        .gallery-cell
+                            a.lightbox-img(href=`/img/products/${product.images[0]}`)
+                                img(src=`/img/products/${product.images[0]}` alt=`${product.name} photo`)
+                        .gallery-cell
+                            a.lightbox-img(href=`/img/products/${product.images[0]}`)
+                                img(src=`/img/products/${product.images[0]}` alt=`${product.name} photo`)
+                        .gallery-cell
+                            a.lightbox-img(href=`/img/products/${product.images[0]}`)
+                                img(src=`/img/products/${product.images[0]}` alt=`${product.name} photo`)
+                        .gallery-cell
+                            a.lightbox-img(href=`/img/products/${product.images[0]}`)
+                                img(src=`/img/products/${product.images[0]}` alt=`${product.name} photo`)
+                        .gallery-cell
+                            a.lightbox-img(href=`/img/products/${product.images[0]}`)
+                                img(src=`/img/products/${product.images[0]}` alt=`${product.name} photo`)
+                    // end gallery main
+                    #gallery-thumbs.gallery-thumbs
+                        .gallery-cell
+                            img(src='/img/shop/item_thumb_1.jpg' alt='')
+                        .gallery-cell
+                            img(src='/img/shop/item_thumb_2.jpg' alt='')
+                        .gallery-cell
+                            img(src='/img/shop/item_thumb_3.jpg' alt='')
+                        .gallery-cell
+                            img(src='/img/shop/item_thumb_4.jpg' alt='')
+                        .gallery-cell
+                            img(src='/img/shop/item_thumb_5.jpg' alt='')
+                    // end gallery thumbs
+                    // end col img slider
+                .col-md-6.product-single
+                    h1.product-single__title.uppercase= product.name
+                    .rating
+                        a(href='#reviews')= product.reviews.length > 0 ? `${product.reviews.length} Review(s)` : ''
+                    span.product-single__price
+                        ins
+                            span.amount $17.99
+                        del
+                            span $30.00
+                    .colors.clearfix
+                        span.colors__label
+                            | Color: 
+                            span.colors__label-selected Fadaed Blue
+                        a.colors__item.colors__item--selected.blue(href='#')
+                        a.colors__item.black(href='#')
+                        a.colors__item.pink(href='#')
+                    .size-quantity.clearfix
+                        .size
+                            label Size
+                            select#size__select.size__select(name='size')
+                                each size in product.size
+                                    option(value=size)= size.replace(/^\w/, c => c.toUpperCase())
+                        .quantity
+                            .quantity.buttons_added
+                                p Quantity
+                                input.minus(type='button' value='-')
+                                input.input-text.qty.text(type='number' step='1' min='1' max= product.quantity value='1' title='Qty')
+                                input.plus(type='button' value='+')
+                                span.woocommerce-result-count.pl-3= (`${product.quantity} available`) /* NEEDS SOME CSS LOVE */
+
+                    .row.row-10.product-single__actions.clearfix
+                        .col
+                            a.btn.btn-lg.btn-color.product-single__add-to-cart(href='#')
+                                i.ui-bag
+                                span Add to Cart
+                        .col
+                            a.btn.btn-lg.btn-dark.product-single__add-to-wishlist(href='#')
+                                i.ui-heart
+                                span Wishlist
+                    .product_meta
+                        ul
+                            li
+                                span.product-code
+                                    | Product Code: 
+                                    span 111763
+                            li
+                                span.product-material
+                                    | Material: 
+                                    span Cotton 100%
+                    // Accordion
+                    #accordion.accordion.mb-50
+                        .accordion__panel
+                            #headingOne.accordion__heading
+                                a.accordion__link.accordion--is-open(data-toggle='collapse' href='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
+                                    | Description
+                                    span.accordion__toggle &nbsp;
+                            #collapseOne.collapse.show(data-parent='#accordion' role='tabpanel' aria-labelledby='headingOne')
+                                .accordion__body
+                                    | #{product.description}
+                        .accordion__panel
+                            #headingTwo.accordion__heading
+                                a.accordion__link.accordion--is-closed(data-toggle='collapse' href='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo')
+                                    | Information
+                                    span.accordion__toggle &nbsp;
+                            #collapseTwo.collapse(data-parent='#accordion' role='tabpanel' aria-labelledby='headingTwo')
+                                .accordion__body
+                                    table.table.shop_attributes
+                                        tbody
+                                            tr
+                                                th Brand:
+                                                td= product.brand
+                                            tr
+                                                th Size:
+                                                td= product.size
+                                            tr
+                                                th Colors:
+                                                td= product.color
+                                            tr
+                                                th Fabric:
+                                                td Cotton (100%)
+                        .accordion__panel
+                            #headingThree.accordion__heading
+                                a.accordion__link.accordion--is-closed(data-toggle='collapse' href='#collapseThree' aria-expanded='false' aria-controls='collapseThree')
+                                    | Reviews
+                                    span.accordion__toggle &nbsp;
+                            #collapseThree.collapse(data-parent='#accordion' role='tabpanel' aria-labelledby='headingThree')
+                                .accordion__body
+                                    .reviews
+                                        ul.reviews__list
+                                            if(product.reviews.length > 0)
+                                                each review in product.reviews
+                                                    - const reviewDate = new Date(review.createdAt).toGMTString().replace(' GMT', '')
+        
+                                                    li.reviews__list-item
+                                                        .reviews__body
+                                                            .reviews__content
+                                                                p.reviews__author
+                                                                    strong= review.user.name
+                                                                    |  - #{reviewDate}
+                                                                .rating
+                                                                    a(href='#')
+                                                                p
+                                                                    | #{review.review}
+                                            else 
+                                                li.reviews__list-item 
+                                                    p There are no reviews for this product yet.
+                                    // end reviews
+                                    // end accordion
+                                    // end col product description
+                                    // end row
+                                    // end container
+    // end single product
+    // Related Products
+    section.section-wrap.pt-0.pb-40
+        .container
+            .heading-row
+                .text-center
+                    h2.heading.bottom-line
+                        | You might also be interested in...
+            .row.row-8
+                .col-lg-2.col-sm-4.product
+                    .product__img-holder
+                        a.product__link(href='single-product.html')
+                            img.product__img(src='/img/shop/product_1.jpg' alt='')
+                            img.product__img-back(src='/img/shop/product_back_1.jpg' alt='')
+                        .product__actions
+                            a.product__quickview(href='quickview.html')
+                                i.ui-eye
+                                span Quick View
+                            a.product__add-to-wishlist(href='#')
+                                i.ui-heart
+                                span Wishlist
+                    .product__details
+                        h3.product__title
+                            a(href='single-product.html') Joeby Tailored Trouser
+                    span.product__price
+                        ins
+                            span.amount $17.99
+                // end product
+                .col-lg-2.col-sm-4.product
+                    .product__img-holder
+                        a.product__link(href='single-product.html')
+                            img.product__img(src='/img/shop/product_9.jpg' alt='')
+                            img.product__img-back(src='/img/shop/product_back_9.jpg' alt='')
+                        .product__actions
+                            a.product__quickview(href='quickview.html')
+                                i.ui-eye
+                                span Quick View
+                            a.product__add-to-wishlist(href='#')
+                                i.ui-heart
+                                span Wishlist
+                    .product__details
+                        h3.product__title
+                            a(href='single-product.html') Men&rsquo;s Belt
+                    span.product__price
+                        ins
+                            span.amount $9.90
+                // end product
+                .col-lg-2.col-sm-4.product
+                    .product__img-holder
+                        a.product__link(href='single-product.html')
+                            img.product__img(src='/img/shop/product_10.jpg' alt='')
+                            img.product__img-back(src='/img/shop/product_back_10.jpg' alt='')
+                        .product__actions
+                            a.product__quickview(href='quickview.html')
+                                i.ui-eye
+                                span Quick View
+                            a.product__add-to-wishlist(href='#')
+                                i.ui-heart
+                                span Wishlist
+                    .product__details
+                        h3.product__title
+                            a(href='single-product.html') Sport Hi Adidas
+                    span.product__price
+                        ins
+                            span.amount $29.00
+                // end product
+                .col-lg-2.col-sm-4.product
+                    .product__img-holder
+                        a.product__link(href='single-product.html')
+                            img.product__img(src='/img/shop/product_2.jpg' alt='')
+                            img.product__img-back(src='/img/shop/product_back_2.jpg' alt='')
+                        .product__actions
+                            a.product__quickview(href='quickview.html')
+                                i.ui-eye
+                                span Quick View
+                            a.product__add-to-wishlist(href='#')
+                                i.ui-heart
+                                span Wishlist
+                    .product__details
+                        h3.product__title
+                            a(href='single-product.html') Denim Hooded
+                    span.product__price
+                        ins
+                            span.amount $30.00
+                // end product
+                .col-lg-2.col-sm-4.product
+                    .product__img-holder
+                        a.product__link(href='single-product.html')
+                            img.product__img(src='/img/shop/product_3.jpg' alt='')
+                            img.product__img-back(src='/img/shop/product_back_3.jpg' alt='')
+                        .product__actions
+                            a.product__quickview(href='quickview.html')
+                                i.ui-eye
+                                span Quick View
+                            a.product__add-to-wishlist(href='#')
+                                i.ui-heart
+                                span Wishlist
+                    .product__details
+                        h3.product__title
+                            a(href='single-product.html') Mint Maxi Dress
+                    span.product__price
+                        ins
+                            span.amount $17.99
+                        del
+                            span $30.00
+                // end product
+                .col-lg-2.col-sm-4.product
+                    .product__img-holder
+                        a.product__link(href='single-product.html')
+                            img.product__img(src='/img/shop/product_4.jpg' alt='')
+                            img.product__img-back(src='/img/shop/product_back_4.jpg' alt='')
+                        .product__actions
+                            a.product__quickview(href='quickview.html')
+                                i.ui-eye
+                                span Quick View
+                            a.product__add-to-wishlist(href='#')
+                                i.ui-heart
+                                span Wishlist
+                    .product__details
+                        h3.product__title
+                            a(href='single-product.html') White Flounce Dress
+                    span.product__price
+                        ins
+                            span.amount $15.99
+                        del
+                            span $27.00
+                // end product
+                // end row
+                // end container
+    // end related products

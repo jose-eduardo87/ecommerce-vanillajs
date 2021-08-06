@@ -1,0 +1,30 @@
+extends base
+
+block content 
+    .sign-in-popup
+        .row
+            .col-md-6.mb-30
+                h3 Sign In
+                form(action='')
+                    label(for='sign-in-input')
+                        | Username or email address 
+                        abbr.required(title='required') *
+                    input#sign-in-input(type='text' name='email')
+                    label(for='sign-in-password')
+                        | Password 
+                        abbr.required(title='required') *
+                    input#sign-in-password(type='text' name='password')
+                    input.btn.btn-md.btn-dark.btn-button(type='submit' name='sign-in' value='Sign In')
+                    a.sign-in-popup__forgot-password(href='#') Forgot Password?
+            .col-md-6.mb-30
+                h3 Register
+                form(action='')
+                    label(for='register-input')
+                        | Email address 
+                        abbr.required(title='required') *
+                    input#register-input(type='text' name='email')
+                    label(for='password')
+                        | Password 
+                        abbr.required(title='required') *
+                    input#register-password(type='password' name='password')
+                    input.btn.btn-md.btn-dark.btn-button(type='submit' name='register' value='Register')

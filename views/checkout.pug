@@ -1,0 +1,455 @@
+extends base
+
+block content 
+    section.section-wrap.checkout
+        .container.relative
+            .row
+                .ecommerce.col
+                    .row.mb-30
+                        .col-md-8
+                            p.ecommerce-info
+                                | Returning Customer? 
+                                a.showlogin(href='#') Click here to login
+                    form.checkout.ecommerce-checkout.row(name='checkout')
+                        #customer_details.col-lg-7
+                            div
+                                h2.uppercase.mb-30 billing details
+                                .row
+                                    .col-md-6
+                                        p#billing_first_name_field.form-row.form-row-first.validate-required.ecommerce-invalid.ecommerce-invalid-required-field
+                                            label(for='billing_first_name')
+                                                | First Name
+                                                abbr.required(title='required') *
+                                            input#billing_first_name.input-text(type='text' placeholder='' value='' name='billing_first_name')
+                                    .col-md-6
+                                        p#billing_last_name_field.form-row.form-row-last.validate-required.ecommerce-invalid.ecommerce-invalid-required-field
+                                            label(for='billing_last_name')
+                                                | Last Name
+                                                abbr.required(title='required') *
+                                            input#billing_last_name.input-text(type='text' placeholder='' value='' name='billing_last_name')
+                                // end name / last name
+                                p#billing_company_field.form-row.form-row-wide
+                                    label(for='billing_company') Company Name
+                                    input#billing_company.input-text(type='text' placeholder='' value='' name='billing_company')
+                                p#billing_country_field.form-row.form-row-wide.address-field.update_totals_on_change.validate-required.ecommerce-validated
+                                    label(for='billing_country')
+                                        | Country
+                                        abbr.required(title='required') *
+                                    select#billing_country.country_to_state.country_select(name='billing_country' title='Country *')
+                                        option Select a country&mldr;
+                                        option(value='AF') Afghanistan
+                                        option(value='AX') &angst;land Islands
+                                        option(value='AL') Albania
+                                        option(value='DZ') Algeria
+                                        option(value='AS') American Samoa
+                                        option(value='AD') Andorra
+                                        option(value='AO') Angola
+                                        option(value='AI') Anguilla
+                                        option(value='AQ') Antarctica
+                                        option(value='AG') Antigua and Barbuda
+                                        option(value='AR') Argentina
+                                        option(value='AM') Armenia
+                                        option(value='AW') Aruba
+                                        option(value='AU') Australia
+                                        option(value='AT') Austria
+                                        option(value='AZ') Azerbaijan
+                                        option(value='BS') Bahamas
+                                        option(value='BH') Bahrain
+                                        option(value='BD') Bangladesh
+                                        option(value='BB') Barbados
+                                        option(value='BY') Belarus
+                                        option(value='BE') Belgium
+                                        option(value='BZ') Belize
+                                        option(value='BJ') Benin
+                                        option(value='BM') Bermuda
+                                        option(value='BT') Bhutan
+                                        option(value='BO') Bolivia, Plurinational State of
+                                        option(value='BQ') Bonaire, Sint Eustatius and Saba
+                                        option(value='BA') Bosnia and Herzegovina
+                                        option(value='BW') Botswana
+                                        option(value='BV') Bouvet Island
+                                        option(value='BR' selected='selected') Brazil
+                                        option(value='IO') British Indian Ocean Territory
+                                        option(value='BN') Brunei Darussalam
+                                        option(value='BG') Bulgaria
+                                        option(value='BF') Burkina Faso
+                                        option(value='BI') Burundi
+                                        option(value='KH') Cambodia
+                                        option(value='CM') Cameroon
+                                        option(value='CA') Canada
+                                        option(value='CV') Cape Verde
+                                        option(value='KY') Cayman Islands
+                                        option(value='CF') Central African Republic
+                                        option(value='TD') Chad
+                                        option(value='CL') Chile
+                                        option(value='CN') China
+                                        option(value='CX') Christmas Island
+                                        option(value='CC') Cocos (Keeling) Islands
+                                        option(value='CO') Colombia
+                                        option(value='KM') Comoros
+                                        option(value='CG') Congo
+                                        option(value='CD') Congo, the Democratic Republic of the
+                                        option(value='CK') Cook Islands
+                                        option(value='CR') Costa Rica
+                                        option(value='CI') C&ocirc;te d&apos;Ivoire
+                                        option(value='HR') Croatia
+                                        option(value='CU') Cuba
+                                        option(value='CW') Cura&ccedil;ao
+                                        option(value='CY') Cyprus
+                                        option(value='CZ') Czech Republic
+                                        option(value='DK') Denmark
+                                        option(value='DJ') Djibouti
+                                        option(value='DM') Dominica
+                                        option(value='DO') Dominican Republic
+                                        option(value='EC') Ecuador
+                                        option(value='EG') Egypt
+                                        option(value='SV') El Salvador
+                                        option(value='GQ') Equatorial Guinea
+                                        option(value='ER') Eritrea
+                                        option(value='EE') Estonia
+                                        option(value='ET') Ethiopia
+                                        option(value='FK') Falkland Islands (Malvinas)
+                                        option(value='FO') Faroe Islands
+                                        option(value='FJ') Fiji
+                                        option(value='FI') Finland
+                                        option(value='FR') France
+                                        option(value='GF') French Guiana
+                                        option(value='PF') French Polynesia
+                                        option(value='TF') French Southern Territories
+                                        option(value='GA') Gabon
+                                        option(value='GM') Gambia
+                                        option(value='GE') Georgia
+                                        option(value='DE') Germany
+                                        option(value='GH') Ghana
+                                        option(value='GI') Gibraltar
+                                        option(value='GR') Greece
+                                        option(value='GL') Greenland
+                                        option(value='GD') Grenada
+                                        option(value='GP') Guadeloupe
+                                        option(value='GU') Guam
+                                        option(value='GT') Guatemala
+                                        option(value='GG') Guernsey
+                                        option(value='GN') Guinea
+                                        option(value='GW') Guinea-Bissau
+                                        option(value='GY') Guyana
+                                        option(value='HT') Haiti
+                                        option(value='HM') Heard Island and McDonald Islands
+                                        option(value='VA') Holy See (Vatican City State)
+                                        option(value='HN') Honduras
+                                        option(value='HK') Hong Kong
+                                        option(value='HU') Hungary
+                                        option(value='IS') Iceland
+                                        option(value='IN') India
+                                        option(value='ID') Indonesia
+                                        option(value='IR') Iran, Islamic Republic of
+                                        option(value='IQ') Iraq
+                                        option(value='IE') Ireland
+                                        option(value='IM') Isle of Man
+                                        option(value='IL') Israel
+                                        option(value='IT') Italy
+                                        option(value='JM') Jamaica
+                                        option(value='JP') Japan
+                                        option(value='JE') Jersey
+                                        option(value='JO') Jordan
+                                        option(value='KZ') Kazakhstan
+                                        option(value='KE') Kenya
+                                        option(value='KI') Kiribati
+                                        option(value='KP') Korea, Democratic People&apos;s Republic of
+                                        option(value='KR') Korea, Republic of
+                                        option(value='KW') Kuwait
+                                        option(value='KG') Kyrgyzstan
+                                        option(value='LA') Lao People&apos;s Democratic Republic
+                                        option(value='LV') Latvia
+                                        option(value='LB') Lebanon
+                                        option(value='LS') Lesotho
+                                        option(value='LR') Liberia
+                                        option(value='LY') Libya
+                                        option(value='LI') Liechtenstein
+                                        option(value='LT') Lithuania
+                                        option(value='LU') Luxembourg
+                                        option(value='MO') Macao
+                                        option(value='MK') Macedonia, the former Yugoslav Republic of
+                                        option(value='MG') Madagascar
+                                        option(value='MW') Malawi
+                                        option(value='MY') Malaysia
+                                        option(value='MV') Maldives
+                                        option(value='ML') Mali
+                                        option(value='MT') Malta
+                                        option(value='MH') Marshall Islands
+                                        option(value='MQ') Martinique
+                                        option(value='MR') Mauritania
+                                        option(value='MU') Mauritius
+                                        option(value='YT') Mayotte
+                                        option(value='MX') Mexico
+                                        option(value='FM') Micronesia, Federated States of
+                                        option(value='MD') Moldova, Republic of
+                                        option(value='MC') Monaco
+                                        option(value='MN') Mongolia
+                                        option(value='ME') Montenegro
+                                        option(value='MS') Montserrat
+                                        option(value='MA') Morocco
+                                        option(value='MZ') Mozambique
+                                        option(value='MM') Myanmar
+                                        option(value='NA') Namibia
+                                        option(value='NR') Nauru
+                                        option(value='NP') Nepal
+                                        option(value='NL') Netherlands
+                                        option(value='NC') New Caledonia
+                                        option(value='NZ') New Zealand
+                                        option(value='NI') Nicaragua
+                                        option(value='NE') Niger
+                                        option(value='NG') Nigeria
+                                        option(value='NU') Niue
+                                        option(value='NF') Norfolk Island
+                                        option(value='MP') Northern Mariana Islands
+                                        option(value='NO') Norway
+                                        option(value='OM') Oman
+                                        option(value='PK') Pakistan
+                                        option(value='PW') Palau
+                                        option(value='PS') Palestinian Territory, Occupied
+                                        option(value='PA') Panama
+                                        option(value='PG') Papua New Guinea
+                                        option(value='PY') Paraguay
+                                        option(value='PE') Peru
+                                        option(value='PH') Philippines
+                                        option(value='PN') Pitcairn
+                                        option(value='PL') Poland
+                                        option(value='PT') Portugal
+                                        option(value='PR') Puerto Rico
+                                        option(value='QA') Qatar
+                                        option(value='RE') R&eacute;union
+                                        option(value='RO') Romania
+                                        option(value='RU') Russian Federation
+                                        option(value='RW') Rwanda
+                                        option(value='BL') Saint Barth&eacute;lemy
+                                        option(value='SH') Saint Helena, Ascension and Tristan da Cunha
+                                        option(value='KN') Saint Kitts and Nevis
+                                        option(value='LC') Saint Lucia
+                                        option(value='MF') Saint Martin (French part)
+                                        option(value='PM') Saint Pierre and Miquelon
+                                        option(value='VC') Saint Vincent and the Grenadines
+                                        option(value='WS') Samoa
+                                        option(value='SM') San Marino
+                                        option(value='ST') Sao Tome and Principe
+                                        option(value='SA') Saudi Arabia
+                                        option(value='SN') Senegal
+                                        option(value='RS') Serbia
+                                        option(value='SC') Seychelles
+                                        option(value='SL') Sierra Leone
+                                        option(value='SG') Singapore
+                                        option(value='SX') Sint Maarten (Dutch part)
+                                        option(value='SK') Slovakia
+                                        option(value='SI') Slovenia
+                                        option(value='SB') Solomon Islands
+                                        option(value='SO') Somalia
+                                        option(value='ZA') South Africa
+                                        option(value='GS') South Georgia and the South Sandwich Islands
+                                        option(value='SS') South Sudan
+                                        option(value='ES') Spain
+                                        option(value='LK') Sri Lanka
+                                        option(value='SD') Sudan
+                                        option(value='SR') Suriname
+                                        option(value='SJ') Svalbard and Jan Mayen
+                                        option(value='SZ') Swaziland
+                                        option(value='SE') Sweden
+                                        option(value='CH') Switzerland
+                                        option(value='SY') Syrian Arab Republic
+                                        option(value='TW') Taiwan, Province of China
+                                        option(value='TJ') Tajikistan
+                                        option(value='TZ') Tanzania, United Republic of
+                                        option(value='TH') Thailand
+                                        option(value='TL') Timor-Leste
+                                        option(value='TG') Togo
+                                        option(value='TK') Tokelau
+                                        option(value='TO') Tonga
+                                        option(value='TT') Trinidad and Tobago
+                                        option(value='TN') Tunisia
+                                        option(value='TR') Turkey
+                                        option(value='TM') Turkmenistan
+                                        option(value='TC') Turks and Caicos Islands
+                                        option(value='TV') Tuvalu
+                                        option(value='UG') Uganda
+                                        option(value='UA') Ukraine
+                                        option(value='AE') United Arab Emirates
+                                        option(value='GB') United Kingdom
+                                        option(value='US') United States
+                                        option(value='UM') United States Minor Outlying Islands
+                                        option(value='UY') Uruguay
+                                        option(value='UZ') Uzbekistan
+                                        option(value='VU') Vanuatu
+                                        option(value='VE') Venezuela, Bolivarian Republic of
+                                        option(value='VN') Viet Nam
+                                        option(value='VG') Virgin Islands, British
+                                        option(value='VI') Virgin Islands, U.S.
+                                        option(value='WF') Wallis and Futuna
+                                        option(value='EH') Western Sahara
+                                        option(value='YE') Yemen
+                                        option(value='ZM') Zambia
+                                        option(value='ZW') Zimbabwe
+                                p#billing_address_1_field.form-row.form-row-wide.address-field.validate-required.ecommerce-invalid.ecommerce-invalid-required-field
+                                    label(for='billing_address_1')
+                                        | Address
+                                        abbr.required(title='required') *
+                                    input#billing_address_1.input-text(type='text' placeholder='Street address' value='' name='billing_address_1')
+                                p#billing_address_2_field.form-row.form-row-wide.address-field
+                                    input#billing_address_2.input-text(type='text' placeholder='Apartment, suite, unit etc. (optional)' value='' name='billing_address_2')
+                                p#billing_city_field.form-row.form-row-wide.address-field.validate-required(data-o_class='form-row form-row-wide address-field validate-required')
+                                    label(for='billing_city')
+                                        | Town / City
+                                        abbr.required(title='required') *
+                                    input#billing_city.input-text(type='text' placeholder='Town / City' value='' name='billing_city')
+                                p#billing_state_field.form-row.form-row-first.address-field.validate-state(data-o_class='form-row form-row-first address-field validate-state')
+                                    label(for='billing_state') State / County
+                                    input#billing_state.input-text(type='text' placeholder='' value='' name='billing_state')
+                                p#billing_postcode_field.form-row.form-row-last.address-field.validate-required.validate-postcode.ecommerce-invalid.ecommerce-invalid-required-field(data-o_class='form-row form-row-last address-field validate-required validate-postcode')
+                                    label(for='billing_postcode')
+                                        | Postcode / ZIP
+                                        abbr.required(title='required') *
+                                    input#billing_postcode.input-text(type='text' placeholder='' value='' name='billing_postcode')
+                                .row
+                                    .col-md-6
+                                        p#billing_phone_field.form-row.form-row-last.validate-required.validate-phone
+                                            label(for='billing_phone')
+                                                | Phone
+                                                abbr.required(title='required') *
+                                            input#billing_phone.input-text(type='text' placeholder='' value='' name='billing_phone')
+                                    .col-md-6
+                                        p#billing_email_field.form-row.form-row-first.validate-required.validate-email
+                                            label(for='billing_email')
+                                                | Email Address
+                                                abbr.required(title='required') *
+                                            input#billing_email.input-text(type='text' placeholder='' value='' name='billing_email')
+                            p.form-row.form-row-wide.create-account
+                                input#createaccount.input-checkbox(type='checkbox' name='createaccount' value='1')
+                                label.checkbox-label(for='createaccount') Create an account?
+                            div
+                                .ecommerce-shipping-fields
+                                    input#ship-to-different-address-checkbox.input-checkbox(type='checkbox' name='ship_to_different_address' value='1')
+                                    label.checkbox(for='ship-to-different-address-checkbox') Ship to a different address
+                                p#order_comments_field.form-row.notes.ecommerce-validated
+                                    label(for='order_comments') Order Notes
+                                    textarea#order_comments.input-text(name='order_comments' placeholder='Notes about your order, e.g. special notes for delivery.' rows='2' cols='6')
+                        // end col
+                        // Your Order
+                        .col-lg-5
+                            #order_review.order-review-wrap.ecommerce-checkout-review-order
+                                h2.uppercase Your Order
+                                table.table.shop_table.ecommerce-checkout-review-order-table
+                                    tbody
+                                        tr
+                                            th
+                                                | Business Suit
+                                                span.count  x 1
+                                            td
+                                                span.amount $599.00
+                                        tr
+                                            th
+                                                | California Dress
+                                                span.count  x 1
+                                            td
+                                                span.amount $1299.00
+                                        tr.cart-subtotal
+                                            th Cart Subtotal
+                                            td
+                                                span.amount $1799.00
+                                        tr.shipping
+                                            th Shipping
+                                            td
+                                                span Free Shipping
+                                        tr.order-total
+                                            th
+                                                strong Total Amount
+                                            td
+                                                strong
+                                                    span.amount $1799.00
+                                #payment.ecommerce-checkout-payment
+                                    h2.uppercase Payment Method
+                                    ul.payment_methods.methods
+                                        li.payment_method_bacs
+                                            input#payment_method_bacs.input-radio(type='radio' name='payment_method' value='bacs' checked='checked')
+                                            label(for='payment_method_bacs') Direct Bank Transfer
+                                            .payment_box.payment_method_bacs
+                                                p
+                                                    | Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order wont be shipped until the funds have cleared in our account.
+                                        li.payment_method_cheque
+                                            input#payment_method_cheque.input-radio(type='radio' name='payment_method' value='cheque')
+                                            label(for='payment_method_cheque') Cheque payment
+                                            .payment_box.payment_method_cheque
+                                                p
+                                                    | Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
+                                        li.payment_method_paypal
+                                            input#payment_method_paypal.input-radio(type='radio' name='payment_method' value='paypal')
+                                            label(for='payment_method_paypal') Paypal
+                                            img(src='img/shop/paypal.png' alt='')
+                                            .payment_box.payment_method_paypal
+                                                p
+                                                    | Pay via PayPal; you can pay with your credit card if you don&rsquo;t have a PayPal account.
+                                    .form-row.place-order
+                                        input#place_order.btn.btn-lg.btn-color.btn-button(type='submit' name='ecommerce_checkout_place_order' value='Place order')
+                        // end order review
+                        // end ecommerce
+                        // end row
+                        // end container
+    // end checkout
+    // Footer
+    footer.footer
+        .container
+            .footer__widgets
+                .row
+                    .col-lg-4.col-md-6
+                        .widget.widget__about
+                            h4.widget-title.white about us
+                            p.widget__about-text Namira is a very slick and clean e-commerce template with endless possibilities.
+                    .col-lg-4.col-md-6
+                        .widget.widget__newsletter
+                            h4.widget-title.white get exclusive offers &amp; updates
+                            form.mc4wp-form
+                                .mc4wp-form-fields
+                                    p
+                                        input(type='email' placeholder='Please enter your email address')
+                                    p
+                                        input(type='submit' value='Subscribe')
+                            .socials.socials--white.mt-20
+                                a.facebook(href='#')
+                                    i.ui-facebook
+                                a.twitter(href='#')
+                                    i.ui-twitter
+                                a.snapchat(href='#')
+                                    i.ui-snapchat
+                                a.instagram(href='#')
+                                    i.ui-instagram
+                                a.pinterest(href='#')
+                                    i.ui-pinterest
+                    .col-lg-2.col-md-6
+                        .widget.widget_nav_menu
+                            h4.widget-title.white help
+                            ul
+                                li
+                                    a(href='#') Contact Us
+                                li
+                                    a(href='#') Tract Order
+                                li
+                                    a(href='#') Returns &amp; Refunds
+                                li
+                                    a(href='#') Private Policy
+                                li
+                                    a(href='#') Shipping Info
+                                li
+                                    a(href='#') FAQ
+                    .col-lg-2.col-md-6
+                        .widget.widget_nav_menu
+                            h4.widget-title.white information
+                            ul
+                                li
+                                    a(href='#') Our Stores
+                                li
+                                    a(href='#') Careers
+                                li
+                                    a(href='#') Delivery Info
+                                li
+                                    a(href='#') Terms &amp; Conditions
+                                li
+                                    a(href='#') Site Map
+                                li
+                                    a(href='#') Namira Reviews
+        // end container

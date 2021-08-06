@@ -1,0 +1,40 @@
+extends base
+
+block content 
+    //- .pages-title.section-padding
+    .container
+        section.pages.login-page.section-padding.pt-60.pb-30
+            // Breadcrumbs
+            ol.breadcrumbs
+                li
+                    a(href='/') Home
+                li.active
+                    | Login & Signup
+                
+            .row
+                .col-sm-6
+                    .main-input.padding60
+                        .log-title
+                            h3
+                                strong Log into your account
+                        .login-text
+                            .custom-input
+                                form.login--form
+                                    input(type='text' name='email' required placeholder='youremail@here.com')
+                                    input(type='password' name='password' required placeholder='Password')
+                                    a.forget(href='#') Forgot your password?
+                                    .submit-text
+                                        button.btn.btn-md.btn-dark.btn-button.submit--login login
+                .col-sm-6
+                    .main-input.padding60.new-customer
+                        .log-title
+                            h3
+                                strong Create your account
+                        .custom-input
+                            form(action='mail.php' method='post')
+                                input(type='text' name='name' placeholder='Your name')
+                                input(type='text' name='email' placeholder='youremail@here.com')
+                                input(type='text' name='address' placeholder='Password')
+                                input(type='password' name='password' placeholder='Confirm password')
+                                .submit-text.coupon.mb-4
+                                    button.btn.btn-md.btn-dark.btn-button Create account

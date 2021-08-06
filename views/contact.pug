@@ -1,0 +1,66 @@
+extends base
+
+block content 
+    section.section-wrap.pb-0
+        .container
+            // Breadcrumbs
+            ol.breadcrumbs
+                li
+                    a(href='index.html') Home
+                li.active
+                    | Contact
+    // Contact
+    section.section-wrap.pb-40
+        .container
+            .row
+                .col-lg-8
+                    h2.uppercase we want to hear from you!
+                    p
+                        | Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis pariatur perferendis asperiores deserunt sunt, harum eligendi autem cum atque nemo incidunt soluta a rem beatae quo quos culpa, quibusdam cupiditate doloribus! Quos quaerat vitae quae tenetur quasi debitis quod quidem. Recusandae expedita deserunt enim ipsum molestias suscipit! Beatae, quia sed.
+                    // Contact Form
+                    form#contact-form.contact-form.mt-30.mb-30(method='post' action='#')
+                        .contact-name
+                            label(for='name')
+                                | Name 
+                                abbr.required(title='required') *
+                            input#name(name='name' type='text' required)
+                        .contact-email
+                            label(for='email')
+                                | Email 
+                                abbr.required(title='required') *
+                            input#email(name='email' type='email' required)
+                        .contact-subject
+                            label(for='email') Subject
+                            input#subject(name='subject' type='text' required)
+                        .contact-message
+                            label(for='message')
+                                | Message 
+                                abbr.required(title='required') *
+                            textarea#message(name='message' rows='7' required='required')
+                        input#submit-message.btn.btn-lg.btn-color.btn-button(type='submit' value='Send Message')
+                        #msg.message
+                // end col
+                .col-lg-4
+                    .contact-info
+                        ul
+                            li.contact-info__item
+                                h4.contact-info__title.uppercase Address
+                                h6.contact-info__store-title Brazil Store
+                                address.address Olinda, Pernambuco. Brazil
+                                h6.contact-info__store-title Canada Store
+                                address.address A-ha inc, 10-123 Main st. NW, Montreal QC, H3Z2Y7
+                            li.contact-info__item
+                                h4.contact-info__title.uppercase Contact Info
+                                ul
+                                    li
+                                        span Phone: 
+                                        a(href='tel:+1-888-1554-456-123') +55 81 99668-9702
+                                    li
+                                        span E-mail: 
+                                        a(href='mailto:themesupport@gmail.com') j.eduardoaraujo87@gmail.com
+                            li.contact-info__item
+                                h4.contact-info__title.uppercase Business Hours
+                                ul
+                                    li Monday &ndash; Friday: 9 am to 20 pm
+                                    li Saturday: 9 am to 17 pm
+    // end contact

@@ -1,0 +1,124 @@
+extends base
+
+include ./+mixins/_productCard
+
+block content 
+    section#products--page.section-wrap.pt-60.pb-30.catalog
+        .container
+            // Breadcrumbs
+            ol.breadcrumbs
+                li
+                    a(href='/') Home
+                if (isSearch)
+                    li.active
+                            | Search
+                else
+                    li
+                        a(href= `/products/${category.toLowerCase()}`)= category
+                    li.active
+                        | All items
+                    
+            .row
+                .col-lg-9.order-lg-2.mb-40
+                    // Filter
+                    .shop-filter
+                        p.woocommerce-result-count
+                            | Showing: 1-<span class='total-products-page'>(loading...)</span> of <span class='total-products'>(loading...)</span> results
+                        span.woocommerce-ordering-label Sort by
+                        form.woocommerce-ordering
+                            select.sort-options
+                                option(value='' disabled selected hidden) Choose an option
+                                option.sort--option(value='price') Ascending price
+                                option.sort--option(value='-price') Descending price
+                                option.sort--option(value='-createdAt') Latest added
+                                option.sort--option(value='-ratingsAverage') By ratings
+                    .row.row-8
+
+                    // Pagination
+                    .pagination.clearfix
+
+                // end col
+                // Sidebar
+                aside.col-lg-3.sidebar.left-sidebar
+                    // Sex
+                    if (isSearch)
+                        .widget.widget_categories.widget--bottom-line
+                            h4.widget-title Sex
+                            ul.sex-select
+                                li
+                                    input#men-sex.checkbox(type='checkbox' name='men-sex')
+                                    label.checkbox-label(for='men-sex') Men
+                                li
+                                    input#women-sex.checkbox(type='checkbox' name='women-sex')
+                                    label.checkbox-label(for='women-sex') Women
+                                li
+                                    input#unisex-sex.checkbox(type='checkbox' name='unisex-sex')
+                                    label.checkbox-label(for='unisex-sex') Unisex
+                    // Categories
+                    .widget.widget__filter-by-category.widget--bottom-line
+                        h4.widget-title Categories
+                        ul.category-select
+                            li
+                                input#bags-category.checkbox(type='checkbox' name='bags-category')
+                                label.checkbox-label(for='bags-category') Bags
+                            li
+                                input#watches-category.checkbox(type='checkbox' name='watches-category')
+                                label.checkbox-label(for='watches-category') Watches
+                            li
+                                input#shoes-category.checkbox(type='checkbox' name='shoes-category')
+                                label.checkbox-label(for='shoes-category') Shoes
+                    // Size
+                    .widget.widget__filter-by-size.widget--bottom-line
+                        h4.widget-title Size
+                        ul.size-select
+                            li
+                                input#x-small-size.checkbox(type='checkbox' name='x-small-size')
+                                label.checkbox-label(for='x-small-size') X-Small
+                            li
+                                input#small-size.checkbox(type='checkbox' name='small-size')
+                                label.checkbox-label(for='small-size') Small
+                            li
+                                input#medium-size.checkbox(type='checkbox' name='medium-size')
+                                label.checkbox-label(for='medium-size') Medium
+                            li
+                                input#large-size.checkbox(type='checkbox' name='large-size')
+                                label.checkbox-label(for='large-size') Large
+                            li
+                                input#x-large-size.checkbox(type='checkbox' name='x-large-size')
+                                label.checkbox-label(for='x-large-size') X-Large
+                    // Color
+                    .widget.widget__filter-by-color.widget--bottom-line
+                        h4.widget-title Color
+                        ul.color-select
+                            li
+                                input#green-color.checkbox(type='checkbox' name='green-color')
+                                label.checkbox-label(for='green-color') Green
+                            li
+                                input#red-color.checkbox(type='checkbox' name='red-color')
+                                label.checkbox-label(for='red-color') Red
+                            li
+                                input#blue-color.checkbox(type='checkbox' name='blue-color')
+                                label.checkbox-label(for='blue-color') Blue
+                            li
+                                input#white-color.checkbox(type='checkbox' name='white-color')
+                                label.checkbox-label(for='white-color') White
+                            li
+                                input#black-color.checkbox(type='checkbox' name='black-color')
+                                label.checkbox-label(for='black-color') Black
+                    // Filter by Price
+                    .widget.widget__filter-by-price.widget--bottom-line
+                        h4.widget-title Filter by Price
+                        #slider-range
+                        p
+                            label(for='amount') Price: 
+                            input#amount(type='text')
+                            a.btn.btn-sm.btn-dark.btn-price-filter(href='#')
+                                span Filter
+                // end sidebar
+                // end row
+                // end container
+                // end catalog
+
+block append scripts 
+    script(type='text/javascript' src='/js/price-slider.js')
+    

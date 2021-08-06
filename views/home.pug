@@ -1,0 +1,118 @@
+extends base
+
+include ./+mixins/_productCard
+
+block content 
+    // Hero Slider
+    section.hero
+        #owl-hero.owl-carousel.owl-theme.owl-carousel--dots-inside
+            .hero__slide(style='background-image: url(img/hero/1.jpg)')
+                //- .container.text-center
+                //-     h1.hero__title Got the style? Show us
+                //-     a.hero__link(href='single-product.html') Shop Now
+            .hero__slide(style='background-image: url(img/hero/2.jpg)')
+                .container.relative
+                    .hero__holder
+                        h1.hero__title-1
+                            | dope
+                            br
+                            | street
+                            br
+                            | wear
+                        a.hero__link-1.btn.btn-lg.btn-dark(href='single-product.html')
+                            span New Arrivals
+            .hero__slide(style='background-image: url(img/hero/3.jpg)')
+                .container.text-center
+                    .hero__holder-1
+                        h1.hero__title-2 new lookbook
+                        h3.hero__subtitle Sale 50% off. Get only trendy items
+                        a.hero__link-1.btn.btn-lg.btn-color(href='single-product.html')
+                            span Shop the trend
+        // end owl
+    // end hero slider
+    // Feature
+    section#home--page.section-wrap.pb-0
+        .container
+            .row.justify-content-center
+                .col-md-3.feature
+                    i.ui-cube.feature__icon
+                    .feature__holder
+                        h6.feature__title Free Shipping
+                        span.feature__text On orders over $100
+                .col-md-3.feature
+                    i.ui-plane.feature__icon
+                    .feature__holder
+                        h6.feature__title Fast Delivery
+                        span.feature__text Get your item within 1 week
+                .col-md-3.feature
+                    i.ui-pricetag.feature__icon
+                    .feature__holder
+                        h6.feature__title
+                            span.feature__promo 15% Off
+                            |  winter sale
+                        span.feature__text Use code WINTER15
+    // Best Seller
+    section.section-wrap.pb-30
+        .container
+            .heading-row
+                .text-center
+                    h2.heading.bottom-line
+                        | best sellers
+            .row.row-8
+                // end product
+                each product in bestSellers
+                    +productCard(product)
+
+                // end product
+                // end row
+                // end container
+    // end best seller
+    // New Arrivals
+    section.section-wrap.no-padding
+        .container
+            .heading-row
+                .text-center
+                    h2.heading.bottom-line
+                        | New arrivals
+            .row.row-8
+                each product in newArrivals 
+                    +productCard(product)
+
+                // end product
+                // end row
+                // end container
+    // end new arrivals
+    // Testimonials
+    section.section-wrap
+        .container
+            .heading-row.mb-0
+                .text-center
+                    h2.heading
+                        | What customers are saying...
+            .row.justify-content-center
+                .col-md-8
+                    #owl-testimonials.owl-carousel.owl-theme.owl-carousel--dark-arrows.owl-carousel--visible-arrows
+                        .testimonial
+                            .testimonial__rating.text-center
+                                span.rating
+                                span.rating__time 20 days ago
+                            p.testimonial__text
+                                | I&rsquo;am amazed, I should say thank you so much for your awesome template. Design is so good and neat, every detail has been taken care these team are realy amazing and talented!
+                            span.testimonial__author Camille Ragpa
+                        .testimonial
+                            .testimonial__rating.text-center
+                                span.rating
+                                span.rating__time 20 days ago
+                            p.testimonial__text
+                                | I&rsquo;am amazed, I should say thank you so much for your awesome template. Design is so good and neat, every detail has been taken care these team are realy amazing and talented!
+                            span.testimonial__author Camille Ragpa
+                        .testimonial
+                            .testimonial__rating.text-center
+                                span.rating
+                                span.rating__time 20 days ago
+                            p.testimonial__text
+                                | I&rsquo;am amazed, I should say thank you so much for your awesome template. Design is so good and neat, every detail has been taken care these team are realy amazing and talented!
+                            span.testimonial__author Camille Ragpa
+                    // end carousel
+                    // end carousel row
+    // end testimonials
