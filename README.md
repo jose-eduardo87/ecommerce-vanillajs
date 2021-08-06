@@ -41,4 +41,4 @@ to use it and anything unexpected happens.
 
 If you have any questions, feedback about this code (I would love to have some!) or just want to have a good chat, you can reach out to me on [Twitter](https://twitter.com/Eduardod_Araujo) and my 
 [e-mail](mailto:j.eduardoaraujo87@gmail.com).
-# ecommerce-vanillajs
+
