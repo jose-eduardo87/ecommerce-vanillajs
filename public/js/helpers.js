@@ -10,12 +10,14 @@ const assignLoginPage = () => location.assign("/login");
 
 // IT RENDERS THE DROPDOWN SHOWN WHEN MOUSE HOVERS THROUGH CART ICON IN THE HEADER
 
-export const renderCartDropDown = (cartItems) => {
+export const renderCartDropDown = ({ cartItems, value }) => {
   const cartContainer = document.querySelector(".nav-cart__items");
   cartContainer.innerText = ""; // CLEANS ANY CONTENT IF THERE IS ANY
   // THIS CHANGES THE TOTAL ITEMS ADDED TO THE CART
   document.querySelector(".nav-cart span").innerText =
-    cartItems.length > 0 ? cartItems.length : "";
+  cartItems.length > 0 ? cartItems.length : "";
+  // SETS THE TOTAL VALUE OF THE CART
+  document.querySelector('.nav-cart__total-price').innerText = `$ ${value}`;
 
   if (cartItems.length === 0) {
     return;
@@ -37,9 +39,6 @@ export const renderCartDropDown = (cartItems) => {
                 <span>1 x</span>
                 <span>${product.price}</span>
               </div>
-            </div>
-            <div class="nav-cart__remove">
-              <a href="#"><i class="ui-close"></i></a>
             </div>
           </div>
         </div>

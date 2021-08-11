@@ -2889,20 +2889,24 @@ var assignLoginPage = function assignLoginPage() {
 // IT RENDERS THE DROPDOWN SHOWN WHEN MOUSE HOVERS THROUGH CART ICON IN THE HEADER
 
 
-var renderCartDropDown = function renderCartDropDown(cartItems) {
+var renderCartDropDown = function renderCartDropDown(_ref) {
+  var cartItems = _ref.cartItems,
+      value = _ref.value;
   var cartContainer = document.querySelector(".nav-cart__items");
   cartContainer.innerText = ""; // CLEANS ANY CONTENT IF THERE IS ANY
   // THIS CHANGES THE TOTAL ITEMS ADDED TO THE CART
 
-  document.querySelector(".nav-cart span").innerText = cartItems.length > 0 ? cartItems.length : "";
+  document.querySelector(".nav-cart span").innerText = cartItems.length > 0 ? cartItems.length : ""; // SETS THE TOTAL VALUE OF THE CART
+
+  document.querySelector('.nav-cart__total-price').innerText = "$ ".concat(value);
 
   if (cartItems.length === 0) {
     return;
   }
 
-  cartItems.forEach(function (_ref) {
-    var product = _ref.product;
-    var markup = "  \n          <div class=\"nav-cart__item clearfix\">\n            <div class=\"nav-cart__img\">\n              <a href=/product/".concat(product.sex, "/").concat(product.slug, ">\n                <img src=\"/img/products/").concat(product.images[0], "\" alt=").concat(product.name, " photo>\n              </a>\n            </div>\n            <div class=\"nav-cart__title\">\n              <a href=/product/").concat(product.sex, "/").concat(product.slug, ">\n                ").concat(product.name, "\n              </a>\n              <div class=\"nav-cart__price\">\n                <span>1 x</span>\n                <span>").concat(product.price, "</span>\n              </div>\n            </div>\n            <div class=\"nav-cart__remove\">\n              <a href=\"#\"><i class=\"ui-close\"></i></a>\n            </div>\n          </div>\n        </div>\n        ");
+  cartItems.forEach(function (_ref2) {
+    var product = _ref2.product;
+    var markup = "  \n          <div class=\"nav-cart__item clearfix\">\n            <div class=\"nav-cart__img\">\n              <a href=/product/".concat(product.sex, "/").concat(product.slug, ">\n                <img src=\"/img/products/").concat(product.images[0], "\" alt=").concat(product.name, " photo>\n              </a>\n            </div>\n            <div class=\"nav-cart__title\">\n              <a href=/product/").concat(product.sex, "/").concat(product.slug, ">\n                ").concat(product.name, "\n              </a>\n              <div class=\"nav-cart__price\">\n                <span>1 x</span>\n                <span>").concat(product.price, "</span>\n              </div>\n            </div>\n          </div>\n        </div>\n        ");
     cartContainer.insertAdjacentHTML("beforeend", markup);
   });
 }; // RENDERS ALL THE RECEIVED PRODUCTS FROM THE API IN /products PAGE. AT THE END, IT CALLS pagination()
@@ -2912,10 +2916,10 @@ var renderCartDropDown = function renderCartDropDown(cartItems) {
 
 exports.renderCartDropDown = renderCartDropDown;
 
-var renderProductsCard = function renderProductsCard(_ref2) {
-  var data = _ref2.data,
-      currentPage = _ref2.currentPage,
-      totalResults = _ref2.totalResults;
+var renderProductsCard = function renderProductsCard(_ref3) {
+  var data = _ref3.data,
+      currentPage = _ref3.currentPage,
+      totalResults = _ref3.totalResults;
   var totalProductsPerPage = document.querySelector(".total-products-page");
   var totalProducts = document.querySelector(".total-products");
   var productsContainer = document.querySelector(".catalog .row .row-8");
@@ -2966,12 +2970,12 @@ var renderProductsList = function renderProductsList(data) {
     return listItemsContainer.insertAdjacentHTML("beforeend", "<p class='text-center mt-5'>You haven't added any items to your cart! :(</p>");
   }
 
-  data.forEach(function (_ref3, i) {
-    var color = _ref3.color,
-        product = _ref3.product,
-        quantity = _ref3.quantity,
-        size = _ref3.size,
-        _id = _ref3._id;
+  data.forEach(function (_ref4, i) {
+    var color = _ref4.color,
+        product = _ref4.product,
+        quantity = _ref4.quantity,
+        size = _ref4.size,
+        _id = _ref4._id;
     var sizeOptionMarkup = fillSelectWithOption(product.size, size);
     var colorOptionMarkup = fillSelectWithOption(product.color, color);
     var markup = "\n      <tr class=\"cart_item\" data-product-id=".concat(_id, ">\n        <td class=\"product-thumbnail\">\n          <a href=\"/product/").concat(product.sex, "/").concat(product.slug, "\" target=\"_blank\">\n            <img src=\"img/products/").concat(product.images[0], "\" alt=\"Product Image\">\n          </a>\n        </td>\n        <td class=\"product-name\">\n          <a href=\"/product/").concat(product.sex, "/").concat(product.slug, "\" target=\"_blank\">").concat(product.name, "</a>\n          <div class=\"size-quantity\">\n            <p> Size: \n            <select class=\"select__product-list\" name=\"size\">\n            ").concat(sizeOptionMarkup, "\n            </select>\n            <p>Color:\n            <select class=\"select__product-list\" name='color'>\n            ").concat(colorOptionMarkup, "\n            </select>\n          </div>\n        </td>\n        <td class=\"product-price\">\n          <span class=\"amount amount--product\">$ ").concat(product.price, "</span>\n        </td>\n        <td class=\"product-quantity\">\n          <div class=\"quantity buttons_added\">\n            <input type=\"button\" value=\"-\" class=\"minus\">\n            <input type=\"number\" step=\"1\" min=\"1\" max=").concat(product.quantity, " value=").concat(quantity, " title=\"Quantity\" class=\"input-text qty text\">\n            <input type=\"button\" value=\"+\" class=\"plus\">\n          </div>\n          <p class=\"small text-muted\">(").concat(product.quantity, " AVAILABLE)\n        </td>\n        <td class=\"product-subtotal\">\n          <span class=\"amount amount--total\">$ ").concat((product.price * quantity).toFixed(2), "</span>\n        </td>\n        <td class=\"product-remove\">\n          <button class=\"remove\" title=\"Remove this item\">\n            <i class=\"ui-close\"></i>\n          </button>\n        </td>\n      </tr>\n    ");
@@ -3052,7 +3056,7 @@ var createAndAppendLinks = function createAndAppendLinks(firstPage, isRightArrow
 
 
 var reloadCartDropDown = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(user) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(user) {
     var _yield$loadData, data;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -3076,12 +3080,12 @@ var reloadCartDropDown = /*#__PURE__*/function () {
   }));
 
   return function reloadCartDropDown(_x) {
-    return _ref4.apply(this, arguments);
+    return _ref5.apply(this, arguments);
   };
 }();
 
 var PATCHOrDELETEProductsOnHome = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(element, request, path) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(element, request, path) {
     var cartNavbar, user, product;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
@@ -3154,13 +3158,13 @@ var PATCHOrDELETEProductsOnHome = /*#__PURE__*/function () {
   }));
 
   return function PATCHOrDELETEProductsOnHome(_x2, _x3, _x4) {
-    return _ref5.apply(this, arguments);
+    return _ref6.apply(this, arguments);
   };
 }();
 
 var addListenerToButtons = function addListenerToButtons(buttonElement, path) {
   buttonElement.forEach( /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(button) {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(button) {
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
@@ -3192,7 +3196,7 @@ var addListenerToButtons = function addListenerToButtons(buttonElement, path) {
     }));
 
     return function (_x5) {
-      return _ref6.apply(this, arguments);
+      return _ref7.apply(this, arguments);
     };
   }());
 };
@@ -3697,7 +3701,10 @@ if (cartNavbar) {
           case 3:
             _yield$loadData = _context2.sent;
             data = _yield$loadData.data;
-            (0, _helpers.renderCartDropDown)(data.cart);
+            (0, _helpers.renderCartDropDown)({
+              cartItems: data.cart,
+              value: data.value
+            });
 
           case 6:
           case "end":
@@ -4133,7 +4140,10 @@ if (cartAndWishlistPage) {
                         case 7:
                           _yield$loadData3 = _context14.sent;
                           data = _yield$loadData3.data;
-                          (0, _helpers.renderCartDropDown)(data.cart);
+                          (0, _helpers.renderCartDropDown)({
+                            cartItems: data.cart,
+                            value: data.value
+                          });
 
                         case 10:
                         case "end":
@@ -4226,7 +4236,7 @@ if (cartAndWishlistPage) {
               if (data) {
                 hasCoupon = true;
                 discountPercent = data.discountPercent;
-                discountMarkup = "\n        <tr class='discount'>\n          <th>".concat(couponCode, "</th>\n        <td>\n          <span>- ").concat(data.discountPercent, " %</span>\n        </td>\n        </tr>\n      ");
+                discountMarkup = "\n          <tr class='discount'>\n            <th>".concat(couponCode, "</th>\n          <td>\n            <span>- ").concat(data.discountPercent, " %</span>\n          </td>\n          </tr>\n        ");
                 document.querySelector(".order-total").insertAdjacentHTML("beforebegin", discountMarkup);
                 calculateTotalValue();
                 couponForm.querySelector("input").disabled = true;
@@ -4279,7 +4289,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51084" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61433" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

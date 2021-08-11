@@ -24,29 +24,15 @@ const couponSchema = new Schema({
   },
 });
 
-// APPLIES DISCOUNT ON CART
+// METHOD ACCESSIBLE ON COUPON DOCUMENTS. FINDS THE USER'S CART AND UPDATE 
+// THE DOCUMENT WITH DISCOUNT DATA
 
 couponSchema.methods.applyCouponOnCart = async (userId, couponId) => {
-  // const cartCoupon = await Cart.aggregate([
-  //   {
-  //     $match: { user: Types.ObjectId(userId) },
-  //   },
-  // ]);
-
-  // const cart = await Cart.findOneAndUpdate(
-  //   { user: userId },
-  //   {
-  //     $set: {
-  //       "discount.$.coupon": couponId,
-  //       "discount.$.appliedIn": Date.now(),
-  //     },
-  //   }
-  // );
-
   const cart = await Cart.findOne({ user: userId });
-
-  console.log(cart);
-};
+  cart.discount = { coupon: couponId, appliedIn: Date.now() };
+  
+  await cart.save();
+}
 
 const Coupon = model("Coupon", couponSchema);
 

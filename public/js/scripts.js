@@ -477,7 +477,7 @@ if (cartNavbar) {
     const { userId } = cartNavbar.dataset;
     const { data } = await loadData(`/users/${userId}/carts`);
 
-    renderCartDropDown(data.cart);
+    renderCartDropDown({cartItems: data.cart, value: data.value});
   })();
 }
 
@@ -611,167 +611,168 @@ if (productsPage) {
 
 if (cartAndWishlistPage) {
   const { userId } = document.querySelector(".nav-cart").dataset;
-  const updateCartButton = cartAndWishlistPage.querySelector(".update-cart");
-  const couponForm = cartAndWishlistPage.querySelector(".coupon");
-  const subtotalCart = cartAndWishlistPage.querySelector(".subtotal--cart");
-  const totalCart = cartAndWishlistPage.querySelector(".total--cart");
-  const updatedCartItems = [];
-  let hasCoupon = false; // CHANGES STATE ON LINE 747
-  let discountPercent; // CHANGES STATE ON LINE 748
-
-  (async () => {
-    const { data } = await loadData(`/users/${userId}/carts/`);
-
-    renderProductsList(data.cart);
-
-    subtotalCart.innerText = `$ ${data.value || 0}`;
-    totalCart.innerText = `$ ${data.value || 0}`;
-
-    const itemsContainer = cartAndWishlistPage.querySelectorAll(".cart_item");
-
-    if (itemsContainer) {
-      // EACH ITEM ADDED TO THE CART
-      itemsContainer.forEach((item) => {
-        const buttons = item.querySelectorAll('input[type="button"]');
-        const totalPrice = item.querySelector(".amount--total");
-        const removeItem = item.querySelector(".remove");
-
-        updatedCartItems.push({ id: item.dataset.productId });
-
-        // EACH BUTTON IN THE ITEM LIST
-        buttons.forEach((button) => {
-          button.addEventListener("click", (evt) => {
-            const clickedButton = evt.target;
-            let multiplier = Number(item.querySelector(".input-text").value);
-            const maxValue = Number(item.querySelector(".input-text").max);
-            const [, productValue] = item
-              .querySelector(".amount--product")
-              .innerText.split("$ ");
-
-            if (clickedButton.value === "+") {
-              if (multiplier !== maxValue) {
-                multiplier++;
+    const updateCartButton = cartAndWishlistPage.querySelector(".update-cart");
+    const couponForm = cartAndWishlistPage.querySelector(".coupon");
+    const subtotalCart = cartAndWishlistPage.querySelector(".subtotal--cart");
+    const totalCart = cartAndWishlistPage.querySelector(".total--cart");
+    const updatedCartItems = [];
+    let hasCoupon = false; // CHANGES STATE ON LINE 747
+    let discountPercent; // CHANGES STATE ON LINE 748
+  
+    (async () => {
+      const { data } = await loadData(`/users/${userId}/carts/`);
+  
+      renderProductsList(data.cart);
+  
+      subtotalCart.innerText = `$ ${data.value || 0}`;
+      totalCart.innerText = `$ ${data.value || 0}`;
+  
+      const itemsContainer = cartAndWishlistPage.querySelectorAll(".cart_item");
+  
+      if (itemsContainer) {
+        // EACH ITEM ADDED TO THE CART
+        itemsContainer.forEach((item) => {
+          const buttons = item.querySelectorAll('input[type="button"]');
+          const totalPrice = item.querySelector(".amount--total");
+          const removeItem = item.querySelector(".remove");
+  
+          updatedCartItems.push({ id: item.dataset.productId });
+  
+          // EACH BUTTON IN THE ITEM LIST
+          buttons.forEach((button) => {
+            button.addEventListener("click", (evt) => {
+              const clickedButton = evt.target;
+              let multiplier = Number(item.querySelector(".input-text").value);
+              const maxValue = Number(item.querySelector(".input-text").max);
+              const [, productValue] = item
+                .querySelector(".amount--product")
+                .innerText.split("$ ");
+  
+              if (clickedButton.value === "+") {
+                if (multiplier !== maxValue) {
+                  multiplier++;
+                }
+              } else {
+                if (multiplier !== 1) {
+                  multiplier--;
+                }
               }
-            } else {
-              if (multiplier !== 1) {
-                multiplier--;
-              }
-            }
-
-            totalPrice.innerText = `$ ${(productValue * multiplier).toFixed(
-              2
-            )}`;
-
+  
+              totalPrice.innerText = `$ ${(productValue * multiplier).toFixed(
+                2
+              )}`;
+  
+              calculateTotalValue();
+            });
+          });
+  
+          removeItem.addEventListener("click", async () => {
+            const { productId } = item.dataset;
+  
+            await deleteData(`/users/${userId}/carts/${productId}`);
+  
+            // REMOVES THE ITEM LIST FROM THE DOM
+            item.parentElement.removeChild(item);
+  
+            // CALCULATES ALL THE ITEMS ADDED TO THE CART AFTER THERE WAS A REMOVAL
             calculateTotalValue();
+  
+            // UPDATED THE AMOUNT OF ITEMS IN THE CART ON NAVBAR
+            const { data } = await loadData(`/users/${userId}/carts`);
+  
+            renderCartDropDown({cartItems: data.cart, value: data.value});
           });
         });
-
-        removeItem.addEventListener("click", async () => {
-          const { productId } = item.dataset;
-
-          await deleteData(`/users/${userId}/carts/${productId}`);
-
-          // REMOVES THE ITEM LIST FROM THE DOM
-          item.parentElement.removeChild(item);
-
-          // CALCULATES ALL THE ITEMS ADDED TO THE CART AFTER THERE WAS A REMOVAL
-          calculateTotalValue();
-
-          // UPDATED THE AMOUNT OF ITEMS IN THE CART ON NAVBAR
-          const { data } = await loadData(`/users/${userId}/carts`);
-
-          renderCartDropDown(data.cart);
-        });
+      }
+    })();
+  
+    const calculateTotalValue = () => {
+      let total = 0;
+      let subTotal = 0;
+      const updatedItemsContainer =
+        cartAndWishlistPage.querySelectorAll(".cart_item");
+  
+      updatedItemsContainer.forEach((item) => {
+        const [, currentValue] = item
+          .querySelector(".amount--total")
+          .innerText.split("$ ");
+  
+        total += hasCoupon
+          ? Number(currentValue) - Number(currentValue) * (discountPercent / 100)
+          : Number(currentValue);
+  
+        subTotal += Number(currentValue);
       });
-    }
-  })();
-
-  const calculateTotalValue = () => {
-    let total = 0;
-    let subTotal = 0;
-    const updatedItemsContainer =
-      cartAndWishlistPage.querySelectorAll(".cart_item");
-
-    updatedItemsContainer.forEach((item) => {
-      const [, currentValue] = item
-        .querySelector(".amount--total")
-        .innerText.split("$ ");
-
-      total += hasCoupon
-        ? Number(currentValue) - Number(currentValue) * (discountPercent / 100)
-        : Number(currentValue);
-
-      subTotal += Number(currentValue);
+  
+      subtotalCart.innerText = `$ ${subTotal.toFixed(2)}`;
+      totalCart.innerText = `$ ${total.toFixed(2)}`;
+    };
+  
+    updateCartButton.addEventListener("click", async () => {
+      updateCartButton.innerText = "Updating...";
+      let index;
+  
+      cartAndWishlistPage.querySelectorAll(".cart_item").forEach((item) => {
+        const [{ value: size }, { value: color }] = item.querySelectorAll(
+          ".select__product-list"
+        );
+        const quantity = item.querySelector(".qty").value;
+  
+        index = updatedCartItems
+          .map((field) => field.id)
+          .indexOf(item.dataset.productId);
+  
+        updatedCartItems[index] = {
+          id: item.dataset.productId,
+          size,
+          color,
+          quantity,
+        };
+      });
+  
+      await updateData(updatedCartItems, `/users/${userId}/carts`);
+  
+      updateCartButton.innerText = "Update Cart";
     });
-
-    subtotalCart.innerText = `$ ${subTotal.toFixed(2)}`;
-    totalCart.innerText = `$ ${total.toFixed(2)}`;
-  };
-
-  updateCartButton.addEventListener("click", async () => {
-    updateCartButton.innerText = "Updating...";
-    let index;
-
-    cartAndWishlistPage.querySelectorAll(".cart_item").forEach((item) => {
-      const [{ value: size }, { value: color }] = item.querySelectorAll(
-        ".select__product-list"
+  
+    couponForm.addEventListener("submit", async (evt) => {
+      evt.preventDefault();
+  
+      const couponCode = couponForm.querySelector("input").value;
+      const { data } = await loadData(
+        `/coupons/user/${userId}/code/${couponCode}`
       );
-      const quantity = item.querySelector(".qty").value;
-
-      index = updatedCartItems
-        .map((field) => field.id)
-        .indexOf(item.dataset.productId);
-
-      updatedCartItems[index] = {
-        id: item.dataset.productId,
-        size,
-        color,
-        quantity,
-      };
+  
+      if (data) {
+        hasCoupon = true;
+        discountPercent = data.discountPercent;
+  
+        const discountMarkup = `
+          <tr class='discount'>
+            <th>${couponCode}</th>
+          <td>
+            <span>- ${data.discountPercent} %</span>
+          </td>
+          </tr>
+        `;
+  
+        document
+          .querySelector(".order-total")
+          .insertAdjacentHTML("beforebegin", discountMarkup);
+  
+        calculateTotalValue();
+  
+        couponForm.querySelector("input").disabled = true;
+        couponForm.querySelector("button").disabled = true;
+        couponForm.querySelector("button").style.cursor = "not-allowed";
+      } else {
+        couponForm.insertAdjacentHTML(
+          "afterend",
+          `<p>Please check if the provided coupon code is spelled correctly.</p>`
+        );
+      }
+  
+      couponForm.querySelector("input").value = "";
     });
-
-    await updateData(updatedCartItems, `/users/${userId}/carts`);
-
-    updateCartButton.innerText = "Update Cart";
-  });
-
-  couponForm.addEventListener("submit", async (evt) => {
-    evt.preventDefault();
-
-    const couponCode = couponForm.querySelector("input").value;
-    const { data } = await loadData(
-      `/coupons/user/${userId}/code/${couponCode}`
-    );
-
-    if (data) {
-      hasCoupon = true;
-      discountPercent = data.discountPercent;
-
-      const discountMarkup = `
-        <tr class='discount'>
-          <th>${couponCode}</th>
-        <td>
-          <span>- ${data.discountPercent} %</span>
-        </td>
-        </tr>
-      `;
-
-      document
-        .querySelector(".order-total")
-        .insertAdjacentHTML("beforebegin", discountMarkup);
-
-      calculateTotalValue();
-
-      couponForm.querySelector("input").disabled = true;
-      couponForm.querySelector("button").disabled = true;
-      couponForm.querySelector("button").style.cursor = "not-allowed";
-    } else {
-      couponForm.insertAdjacentHTML(
-        "afterend",
-        `<p>Please check if the provided coupon code is spelled correctly.</p>`
-      );
-    }
-
-    couponForm.querySelector("input").value = "";
-  });
+  
 }
